@@ -4,15 +4,21 @@ A TCP server framework implemented using boost::asio and C++ templates. The busi
 
 
 SYSTEM_INFO systemInfo;
+
 GetSystemInfo(&systemInfo);
 
 
 std::size_t num_threads = (int)systemInfo.dwNumberOfProcessors * 2 + 2;
 
 string addr = string("0.0.0.0");
-qizhi::boostserver::server<CClientContext> *pBoostServer pBoostServer = new qizhi::boostserver::server<CClientContext>(addr, m_SSvr.nServerPort, num_threads);
+
+qizhi::boostserver::server<CClientContext> *pBoostServer pBoostServer = new qizhi::boostserver::server<CClientContext>(addr, 
+  m_SSvr.nServerPort, num_threads);
+
 pBoostServer->set_buffer_size(m_nSendBufferSize, m_nReceiveBufferSize);
+
 pBoostServer->set_crypt(m_bCrypt ? true : false);
+
 pBoostServer->run();
 
 
